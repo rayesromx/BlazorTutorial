@@ -4,20 +4,31 @@
 <PageTitle>Students</PageTitle>
 
 <div>
-    Student
-    <p>Name: @Student1.Name</p>
-    <p>ID: @Student1.StudentId</p>
-    <p>Email: @Student1.Email</p>
+    @foreach (var s in GetStudents())
+    {
+        <div>
+            Student
+            <p>Name: @s.Name</p>
+            <p>ID: @s.StudentId</p>
+            <p>Email: @s.Email</p>
+        </div>
+    }
+    
 </div>
 
 
 @code {
-    public Student Student1 { get => GetStudent(); }
-
-    public Student GetStudent() => new Student()
+    public List<Student> GetStudents() => new List<Student>()
         {
+            new Student(){
             Name ="Raymundo",
             StudentId = 1421271,
             Email ="ray.esro@gmail.com"
+            },
+            new Student(){
+            Name ="Angelica",
+            StudentId = 1521272,
+            Email ="angi.garcia@gmail.com"
+            },
         };
 }
