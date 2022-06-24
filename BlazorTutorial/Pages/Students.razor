@@ -1,0 +1,23 @@
+﻿@page "/students"
+@using BlazorTutorial.Models
+<h3>Students</h3>
+<PageTitle>Students</PageTitle>
+
+<div>
+    Student
+    <p>Name: @Student1.Name</p>
+    <p>ID: @Student1.StudentId</p>
+    <p>Email: @Student1.Email</p>
+</div>
+
+
+@code {
+    public Student Student1 { get => GetStudent(); }
+
+    public Student GetStudent() => new Student()
+        {
+            Name ="Raymundo",
+            StudentId = 1421271,
+            Email ="ray.esro@gmail.com"
+        };
+}
