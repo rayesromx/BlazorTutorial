@@ -19,9 +19,19 @@
         <input type="checkbox" @bind="ShowButton"/>
         @foreach (var s in StudentList!)
         {
-            <StudentItem Item="s" ShowButtons="ShowButton" DeleteStudent="DeleteStudent" >
-                <TitleFragment>Student item!!!</TitleFragment>
-                </StudentItem>
+            <GenericListItem Titem="Student" 
+                GenericItem="s" 
+                Context="s" 
+                DeleteItem="DeleteStudent"
+                ShowButtons="ShowButton"
+            >
+                <DisplayItemFragment>
+                    <p>Name: @s.Name</p>
+                    <p>ID: @s.StudentId</p>
+                    <p>Email: @s.Email</p>
+                </DisplayItemFragment>
+                <TitleFragment>Student item</TitleFragment>
+            </GenericListItem>
         }
     }
     

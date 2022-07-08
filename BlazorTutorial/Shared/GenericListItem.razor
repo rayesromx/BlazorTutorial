@@ -1,0 +1,46 @@
+﻿@typeparam Titem
+
+
+<div>
+    @if (TitleFragment == null)
+    {
+        <h1>Generic list</h1>
+    }
+    else
+    {
+        @TitleFragment
+    }
+
+    @if (GenericItem == null)
+    {
+        @if (NoDataFragment == null)
+        {
+            <p>Data unavailable</p>
+        }
+        else
+        {
+            @NoDataFragment
+        }
+    }
+    else
+    {
+        @DisplayItemFragment(GenericItem)
+    }
+    @if (ShowButtons)
+    {
+        <div>
+            <button @onclick="@(() => DeleteItem.InvokeAsync(GenericItem))">Borrar</button>
+    </div>
+    }
+
+</div>
+
+@code {
+    [Parameter] public RenderFragment? NoDataFragment { get; set; }
+    [Parameter] public RenderFragment? TitleFragment { get; set; }
+    [Parameter] public RenderFragment<Titem>? DisplayItemFragment { get; set; }
+    [Parameter] public EventCallback<Titem> DeleteItem { get; set; }
+
+    [Parameter] public Titem GenericItem { get; set; }
+    [Parameter]public bool ShowButtons { get; set; }
+}
