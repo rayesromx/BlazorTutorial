@@ -17,9 +17,9 @@
     else
     {
         <input type="checkbox" @bind="ShowButton"/>
-        @foreach (var s in GetStudents())
+        @foreach (var s in StudentList!)
         {
-            <StudentItem Item="s" ShowButtons="ShowButton" />
+            <StudentItem Item="s" ShowButtons="ShowButton" DeleteStudent="DeleteStudent" />
         }
     }
     
@@ -34,7 +34,7 @@
     }
 
     public List<Student>? StudentList;
-     bool ShowButton= true;
+    bool ShowButton= true;
 
     private List<Student> GetStudents() => new List<Student>()
         {
@@ -49,4 +49,11 @@
             Email ="angi.garcia@gmail.com"
             },
         };
+
+    void DeleteStudent(Student studentParam)
+    {
+        StudentList?.Remove(studentParam);
+        Console.WriteLine($"student {studentParam.Name} has been deleted");
+    }
+
 }

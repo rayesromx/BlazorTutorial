@@ -14,7 +14,7 @@
     @if (ShowButtons)
     {
         <div>
-            <button @onclick="Delete">Borrar</button>
+            <button @onclick="@(() => DeleteStudent.InvokeAsync(Item))">Borrar</button>
     </div>
     }
 
@@ -25,9 +25,5 @@
 
     [Parameter] public bool ShowButtons { get; set; }
 
-
-    void Delete()
-    {
-        Console.WriteLine($"DEleting {Item?.Name}");
-    }
+    [Parameter] public EventCallback<Student> DeleteStudent { get; set; }
 }
