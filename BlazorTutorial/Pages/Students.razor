@@ -16,7 +16,7 @@
     }
     else
     {
-        <input type="checkbox" @onchange="@(() => ShowButton = !ShowButton)"/>
+        <input type="checkbox" @bind="ShowButton"/>
         @foreach (var s in GetStudents())
         {
             <StudentItem Item="s" ShowButtons="ShowButton" />
