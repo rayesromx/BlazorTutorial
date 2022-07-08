@@ -1,9 +1,24 @@
 ﻿@using BlazorTutorial.Models
  <div>
-    Student
+    @if (TitleFragment == null)
+    {
+        <h1>Student</h1>
+    }
+    else
+    {
+        @TitleFragment
+    }
+
     @if (Item == null)
     {
-        <p>Data unavailable</p>
+        @if (NoDataFragment == null)
+        {
+            <p>Data unavailable</p>
+        }
+        else
+        {
+            @NoDataFragment
+        }
     }
     else
     {
@@ -26,4 +41,7 @@
     [Parameter] public bool ShowButtons { get; set; }
 
     [Parameter] public EventCallback<Student> DeleteStudent { get; set; }
+
+    [Parameter] public RenderFragment? NoDataFragment { get; set; }
+    [Parameter] public RenderFragment? TitleFragment { get; set; }
 }
