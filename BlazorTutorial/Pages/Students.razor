@@ -1,22 +1,14 @@
 ﻿@page "/students"
 @using BlazorTutorial.Models
+@using BlazorTutorial.CustomComponents.Students
 <h3>Students</h3>
 <PageTitle>Students</PageTitle>
 
 
 <div>
-    @if (StudentList != null)
+    @if (StudentList == null)
     {
-        @foreach (var s in GetStudents())
-        {
-            <div>
-                Student
-                <p>Name: @s.Name</p>
-                <p>ID: @s.StudentId</p>
-                <p>Email: @s.Email</p>
-            </div>
-        }
-
+        <p>Loading students...</p>
     }
     else if (StudentList?.Count == 0)
     {
@@ -24,7 +16,11 @@
     }
     else
     {
-        <p>Loading students...</p>
+        <input type="checkbox" @onchange="@(() => ShowButton = !ShowButton)"/>
+        @foreach (var s in GetStudents())
+        {
+            <StudentItem Item="s" ShowButtons="ShowButton" />
+        }
     }
     
 </div>
@@ -33,11 +29,12 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(3000);
+        await Task.Delay(1000);
         StudentList = GetStudents();
     }
 
     public List<Student>? StudentList;
+    public bool ShowButton { get; set; } = true;
 
     private List<Student> GetStudents() => new List<Student>()
         {
